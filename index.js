@@ -17,6 +17,13 @@ app.get('/', (req, res) => {
 import teste from './routes/teste.js'
 app.use('/teste', teste)
 
+// Importar rotas de Cursos e Alunos
+import cursosRoutes from './routes/cursos.js'
+import alunosRoutes from './routes/alunos.js'
+
+app.use('/cursos', cursosRoutes)
+app.use('/alunos', alunosRoutes)
+
 app.listen(porta, () => {
   console.log(`Servidor rodando em http://localhost:${porta}`)
 })

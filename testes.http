@@ -1,0 +1,188 @@
+# Exemplos de Testes da API
+
+## 1. CRIAR CURSO
+POST http://localhost:3000/cursos
+Content-Type: application/json
+
+{
+  "nome": "Análise e Desenvolvimento de Sistemas",
+  "descricao": "Curso superior de tecnologia focado em desenvolvimento de software",
+  "carga_horaria": 2400
+}
+
+###
+
+## 2. CRIAR OUTRO CURSO
+POST http://localhost:3000/cursos
+Content-Type: application/json
+
+{
+  "nome": "Engenharia de Software",
+  "descricao": "Bacharelado em Engenharia de Software",
+  "carga_horaria": 3600
+}
+
+###
+
+## 3. LISTAR TODOS OS CURSOS
+GET http://localhost:3000/cursos
+
+###
+
+## 4. BUSCAR CURSO POR ID
+GET http://localhost:3000/cursos/1
+
+###
+
+## 5. ATUALIZAR CURSO
+PUT http://localhost:3000/cursos/1
+Content-Type: application/json
+
+{
+  "nome": "ADS - Análise e Desenvolvimento de Sistemas",
+  "carga_horaria": 2600
+}
+
+###
+
+## 6. CRIAR ALUNO
+POST http://localhost:3000/alunos
+Content-Type: application/json
+
+{
+  "nome": "João Silva Santos",
+  "email": "joao.silva@email.com",
+  "matricula": "2024001",
+  "curso_id": 1
+}
+
+###
+
+## 7. CRIAR OUTRO ALUNO
+POST http://localhost:3000/alunos
+Content-Type: application/json
+
+{
+  "nome": "Maria Oliveira",
+  "email": "maria.oliveira@email.com",
+  "matricula": "2024002",
+  "curso_id": 1
+}
+
+###
+
+## 8. CRIAR ALUNO DE OUTRO CURSO
+POST http://localhost:3000/alunos
+Content-Type: application/json
+
+{
+  "nome": "Pedro Costa",
+  "email": "pedro.costa@email.com",
+  "matricula": "2024003",
+  "curso_id": 2
+}
+
+###
+
+## 9. LISTAR TODOS OS ALUNOS (com dados do curso)
+GET http://localhost:3000/alunos
+
+###
+
+## 10. BUSCAR ALUNO POR ID
+GET http://localhost:3000/alunos/1
+
+###
+
+## 11. ATUALIZAR ALUNO
+PUT http://localhost:3000/alunos/1
+Content-Type: application/json
+
+{
+  "nome": "João Silva Santos Junior",
+  "email": "joao.junior@email.com"
+}
+
+###
+
+## 12. DELETAR ALUNO
+DELETE http://localhost:3000/alunos/3
+
+###
+
+## 13. DELETAR CURSO
+DELETE http://localhost:3000/cursos/2
+
+###
+
+## TESTES DE VALIDAÇÃO
+
+## 14. ERRO: Criar curso sem nome (deve retornar 400)
+POST http://localhost:3000/cursos
+Content-Type: application/json
+
+{
+  "descricao": "Teste sem nome",
+  "carga_horaria": 1200
+}
+
+###
+
+## 15. ERRO: Criar aluno sem curso_id (deve retornar 400)
+POST http://localhost:3000/alunos
+Content-Type: application/json
+
+{
+  "nome": "Teste Aluno",
+  "email": "teste@email.com",
+  "matricula": "2024999"
+}
+
+###
+
+## 16. ERRO: Criar aluno com curso_id inexistente (deve retornar 400)
+POST http://localhost:3000/alunos
+Content-Type: application/json
+
+{
+  "nome": "Teste Aluno",
+  "email": "teste2@email.com",
+  "matricula": "2024998",
+  "curso_id": 999
+}
+
+###
+
+## 17. ERRO: Buscar curso inexistente (deve retornar 404)
+GET http://localhost:3000/cursos/999
+
+###
+
+## 18. ERRO: Buscar aluno inexistente (deve retornar 404)
+GET http://localhost:3000/alunos/999
+
+###
+
+## 19. ERRO: Email duplicado (deve retornar 400)
+POST http://localhost:3000/alunos
+Content-Type: application/json
+
+{
+  "nome": "Teste Duplicado",
+  "email": "joao.silva@email.com",
+  "matricula": "2024997",
+  "curso_id": 1
+}
+
+###
+
+## 20. ERRO: Matrícula duplicada (deve retornar 400)
+POST http://localhost:3000/alunos
+Content-Type: application/json
+
+{
+  "nome": "Teste Duplicado 2",
+  "email": "teste.duplicado@email.com",
+  "matricula": "2024001",
+  "curso_id": 1
+}
